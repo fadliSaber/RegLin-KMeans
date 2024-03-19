@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-with open('data.txt','r') as file:
+with open('output.txt','r') as file:
     data = file.readlines()
 
 x = []

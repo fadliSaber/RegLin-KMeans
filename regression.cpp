@@ -36,20 +36,22 @@ pair<float,float> linRegression(vector<pair<float,float>> data){
 
 
 int main(){
+    ifstream datafile("data.txt");
 
-    ofstream datafile("data.txt");
-
-    
     vector<pair<float,float>> data;
-    for(int i = 0;i<100;i++){
-        data.push_back({i,i*i});
+    float x,y;
+    while(!datafile.eof()){
+        datafile >> x >> y;
+        data.push_back({x,y});
     }
+
+    datafile.close();
+    ofstream datafile1("output.txt");
 
     pair<float,float> ans = linRegression(data);
-
-    for(int i = 0;i<100;i++){
-        datafile <<i<<" "<<i*i<<" "<<ans.first*i+ans.second<<endl;
+    for(int i = 0;i<data.size()-1;i++){
+        datafile1 <<data[i].first<<" "<<data[i].second<<" "<<ans.first*data[i].first+ans.second<<endl;
     }
     cout<<ans.first<<" "<<ans.second<<endl;
-    datafile.close();
+    datafile1.close();
 }
